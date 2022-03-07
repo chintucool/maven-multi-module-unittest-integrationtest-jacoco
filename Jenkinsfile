@@ -1,4 +1,7 @@
 node {
+   tools{
+        maven 'maven3'
+    }
    stage('Preparation') {
       checkout scm
    }
@@ -7,8 +10,8 @@ node {
       sh 'mvn clean install -P test-all'
    }
    stage('SonarQube analysis') {
-      withSonarQubeEnv('sonar2') {
+     
         sh 'mvn sonar:sonar'
-      }
+      
    }
 }
